@@ -7,7 +7,7 @@ import { User } from "@/models/User";
 import { verifyCredentials } from "@/service/(auth)/login/credentials";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  adapter: MongoDBAdapter(client),
+  adapter: client ? MongoDBAdapter(client) : undefined,
   // O provider Credentials só funciona com sessão JWT.
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },

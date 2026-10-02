@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 // Moldura de duas colunas do bloco login-02, compartilhada por /login e /signup.
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -5,6 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-2 text-lg font-semibold tracking-tight">
+            <Image src="/logo-mark.svg" alt="" width={28} height={28} loading="eager" />
             conversi
           </a>
         </div>
@@ -12,7 +15,16 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <div className="w-full max-w-xs">{children}</div>
         </div>
       </div>
-      <div className="hidden bg-linear-to-br from-secondary via-accent to-muted lg:block" />
+      <div className="hidden items-center justify-center bg-linear-to-br from-secondary via-accent to-muted lg:flex">
+        <Image
+          src="/logo-icon.svg"
+          alt="conversi"
+          width={320}
+          height={320}
+          className="size-64 drop-shadow-2xl xl:size-80"
+          loading="eager"
+        />
+      </div>
     </div>
   )
 }

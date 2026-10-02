@@ -4,5 +4,5 @@ import { AppSidebar } from "@/components/workspace/[workspaceId]/@sidebar/app-si
 // de /workspace/[workspaceId], então a sidebar aparece em todas elas.
 export default async function SidebarSlot({ params }: { params: Promise<{ workspaceId: string }> }) {
   const { workspaceId } = await params
-  return <AppSidebar workspace={{ id: workspaceId, name: "Conversi", avatarUrl: null }} />
+  return <AppSidebar workspace={{ id: workspaceId, name: "Conversi", avatarUrl: "/logo-icon.svg" }} />
 }

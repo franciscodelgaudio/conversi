@@ -1,9 +1,7 @@
 import { MongoClient } from "mongodb";
 
-if (!process.env.MONGODB_URI) {
-  throw new Error("MONGODB_URI não definido no ambiente");
-}
-
+// Sem MONGODB_URI o app sobe sem banco (client = null) e o Auth.js roda
+// sem adapter.
 const uri = process.env.MONGODB_URI;
 
 const globalForMongo = globalThis as unknown as {
@@ -12,9 +10,9 @@ const globalForMongo = globalThis as unknown as {
 
 // Em dev o HMR recarrega módulos; reaproveita o client para não abrir
 // uma conexão nova a cada reload.
-const client = globalForMongo._mongoClient ?? new MongoClient(uri);
+const client = uri ? (globalForMongo._mongoClient ?? new MongoClient(uri)) : null;
 
-if (process.env.NODE_ENV !== "production") {
+if (client && process.env.NODE_ENV !== "production") {
   globalForMongo._mongoClient = client;
 }
 
